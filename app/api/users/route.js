@@ -1,15 +1,10 @@
+import { db } from "@/firebase";
 export async function GET() {
-  const users = [
-    {
-      id: 1,
-      email: "name@email.com",
-    },
-    {
-      id: 2,
-      email: "name2@email.com",
-    },
-  ];
+  const users = [];
+  const snapshot = await db.collection("users").get();
+  snapshot.forEach((doc) => {
+    users.push(doc.data());
+  });
   const status = "success!";
-
   return Response.json({ data: users, status });
 }
