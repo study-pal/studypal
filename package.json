@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --list-different '{app,public}/**/*.{js,ts,tsx,md,html,json}' --write"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^7.1.0",
     "firebase-admin": "^11.11.0",
     "next": "13.5.4",
     "react": "^18",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "autoprefixer": "^10",
     "postcss": "^8",
+    "prettier": "^3.0.3",
     "tailwindcss": "^3"
   }
 }
