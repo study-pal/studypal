@@ -14,8 +14,6 @@ export async function POST(request) {
     db.collection("tutors").doc(userID).set({ tutor });
     return Response.json({ status, data: tutor });
   } catch (error) {
-    status = "Error";
-    const message = `Error adding document: ${error}`;
-    return Response.json({ status, message });
+    return Response.json({ status: "error", message: JSON.stringify(error) });
   }
 }
