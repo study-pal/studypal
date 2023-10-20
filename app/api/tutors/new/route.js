@@ -3,7 +3,6 @@ import { db } from "@/firebase";
 export async function POST(request) {
   const { userID, gender, bookingLink, ageGroup, subjects } =
     await request.json();
-  let status = "success";
   let tutor = {
     gender: gender,
     bookingLink: bookingLink,
