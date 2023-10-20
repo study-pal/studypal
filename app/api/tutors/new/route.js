@@ -11,7 +11,7 @@ export async function POST(request) {
   };
   try {
     db.collection("tutors").doc(userID).set({ tutor });
-    return Response.json({ status, data: tutor });
+    return Response.json({ status: "success" , data: tutor });
   } catch (error) {
     return Response.json({ status: "error", message: JSON.stringify(error) });
   }
