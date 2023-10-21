@@ -80,6 +80,7 @@ export default function PostAuth() {
           <TutorDetailsForm
             control={control}
             onSubmit={handleSubmit(onSubmit)}
+            displayName={displayName}
             errors={errors}
           />
         </div>

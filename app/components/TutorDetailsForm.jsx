@@ -9,7 +9,12 @@ import Select from "@/app/components/forms/Select";
 import TextArea from "@/app/components/forms/TextArea";
 import { ageGroups, genderOptions } from "@/schemas/tutor";
 
-export default function TutorDetailsForm({ control, onSubmit, errors }) {
+export default function TutorDetailsForm({
+  control,
+  onSubmit,
+  errors,
+  displayName,
+}) {
   const [subject, setSubject] = useState("");
   const { fields, append, remove } = useFieldArray({
     control,
