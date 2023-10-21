@@ -28,11 +28,8 @@ function TutorDetails() {
         className="w-full max-w-screen-2xl flex flex-col h-3/4 border-solid rounded p-7 bg-green-100"
       >
         <div className="flex flex-col gap-3 w-44">
-          <p className="font-semibold">Gender</p>
-          <Select options={genderOptions} />
-
-          <p className="font-semibold">Age Group</p>
-          <Select options={ageGroups} />
+          <Select options={genderOptions} label="Gender" />
+          <Select options={ageGroups} label="Age Group" />
 
           <input
             className="py-1 px-2 rounded text-m border-2 border-solid border-neutral-400 focus:border-dark"

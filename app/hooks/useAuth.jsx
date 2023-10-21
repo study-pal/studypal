@@ -36,7 +36,7 @@ export default function useAuth() {
   async function handleLogout() {
     const user = new PassageUser();
     setAuth({
-      state: "loggingOut",
+      state: "loading",
       user,
     });
     await user.signOut();

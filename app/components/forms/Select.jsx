@@ -1,21 +1,29 @@
 export default function Select({
-  className,
-  onChange,
-  options,
+  name,
   value,
-  placeholder,
+  onChange,
+  error,
+  options,
+  label,
+  className,
 }) {
   return (
-    <select
-      className={`py-1 px-2 rounded text-m border-2 border-solid border-neutral-400 focus:border-dark ${className}`}
-      onChange={onChange}
-      value={value}
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.value}
-        </option>
-      ))}
-    </select>
+    <div className="flex flex-col">
+      <label htmlFor={name} className="font-medium">
+        {label}
+      </label>
+      <select
+        className={`py-1 px-2 rounded border border-neutral-400 hover:border-dark focus:border-dark transition-all outline-none ${className}`}
+        onChange={onChange}
+        value={value}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.value}
+          </option>
+        ))}
+      </select>
+      {error && <p className="text-xs text-red-500">{error.message}</p>}
+    </div>
   );
 }
