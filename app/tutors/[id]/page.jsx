@@ -36,7 +36,7 @@ export default function Tutor() {
             </Button>
           </div>
         </div>
-        <div className="w-full flex flex-row px-10 ">
+        <div className="w-full flex flex-row px-10 gap-4">
           <div className="w-4/5 pr-20 py-10 ">
             <p className="text-justify">
               Lorem ipsum keme keme keme 48 years majubis chapter valaj emena
@@ -54,7 +54,12 @@ export default function Tutor() {
               mahogany na ang ang majubis sa ugmas kasi chaka.
             </p>
           </div>
-          <div className="bg-zinc-400 w"></div>
+          <div className="bg-zinc-300 border-zinc-400 border-solid border-2 w-1/5 flex flex-col px-6 text-center">
+            <div className="w-full">
+              <h2 className="my-2 font-semibold">Age Group:</h2>
+              <h3 className="">{ageGroup}</h3>
+            </div>
+          </div>
         </div>
       </div>
     </main>
