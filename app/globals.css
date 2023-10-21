@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +8,69 @@ body {
   background-color: theme("colors.background");
   font-size: 14px;
   color: theme("colors.dark");
+}
+
+/* Passage */
+passage-auth {
+  --passage-container-background-color: theme("colors.background");
+
+  --passage-header-font-family: "Inter", "Helvetica", BlinkMacSystemFont,
+    -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
+  --passage-header-font-size: 24px;
+  --passage-header-font-weight: 700;
+  --passage-header-text-color: theme("colors.dark");
+
+  --passage-body-font-family: "Inter", "Helvetica", BlinkMacSystemFont,
+    -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
+  --passage-body-text-color: theme("colors.dark");
+
+  --passage-primary-button-background-color: theme("colors.emerald.500");
+
+  --passage-primary-button-border-radius: 4px;
+
+  --passage-primary-button-background-hover-color: theme("colors.emerald.600");
+}
+
+/* Loader */
+@keyframes loader {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+.loader div {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 20px solid theme("colors.emerald.500");
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+.loader div {
+  animation: loader 1s linear infinite;
+  top: 100px;
+  left: 100px;
+}
+.loader-container {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+}
+.loader {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+.loader div {
+  box-sizing: content-box;
 }
