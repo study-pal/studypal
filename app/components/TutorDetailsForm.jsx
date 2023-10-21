@@ -9,12 +9,7 @@ import Select from "@/app/components/forms/Select";
 import TextArea from "@/app/components/forms/TextArea";
 import { ageGroups, genderOptions } from "@/schemas/tutor";
 
-export default function TutorDetailsForm({
-  control,
-  onSubmit,
-  errors,
-  displayName,
-}) {
+export default function TutorDetailsForm({ control, onSubmit, errors }) {
   const [subject, setSubject] = useState("");
   const { fields, append, remove } = useFieldArray({
     control,
@@ -29,8 +24,6 @@ export default function TutorDetailsForm({
       }}
       className="flex flex-col gap-3"
     >
-      {displayName && <TextInput value={displayName} readonly />}
-
       <Controller
         control={control}
         name="gender"
