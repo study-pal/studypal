@@ -1,5 +1,5 @@
-import BookIcon from "@/icons/book.svg";
-import PencilIcon from "@/icons/pencil.svg";
+import BookIcon from "../icons/book.svg";
+import PencilIcon from "../icons/pencil.svg";
 
 export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
   // If avatar is null, show placeholder

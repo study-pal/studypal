@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import Button from "./forms/Button";
 
 export default function Nav() {
