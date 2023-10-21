@@ -1,9 +1,15 @@
 "use client";
 
-import TutorCard from "@/components/TutorCard";
-import Button from "@/components/forms/Button";
+import Loader from "./components/Loader";
+import TutorCard from "./components/TutorCard";
+import Button from "./components/forms/Button";
+import useAuth from "./hooks/useAuth";
 
 export default function Home() {
+  const {
+    auth: { state },
+  } = useAuth();
+
   // TODO: get tutors from api
   const dummyTutors = [
     {
@@ -23,8 +29,15 @@ export default function Home() {
     },
   ];
 
+  if (state === "loading")
+    return (
+      <div className="flex justify-center mt-20">
+        <Loader />
+      </div>
+    );
+
   return (
-    <main className="flex min-h-screen lg:mx-44 md:mx-20 mx-6">
+    <main className="flex lg:mx-44 md:mx-20 mx-6">
       <div className="w-full py-16">
         <h1 className="text-3xl font-bold mb-4">Tutors</h1>
         <div className="grid gap-6" style={homeGridColumns}>
@@ -71,7 +84,7 @@ function TutorList({ tutors }) {
 }
 
 const homeGridColumns = {
-  gridTemplateColumns: "1fr 5fr",
+  gridTemplateColumns: "2fr 6fr",
 };
 
 const tutorListGridColumns = {
