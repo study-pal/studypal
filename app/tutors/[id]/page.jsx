@@ -1,5 +1,5 @@
-import Button from "@/components/forms/Button";
-import Pill from "@/components/Pill";
+import Button from "@/app/components/forms/Button";
+import Pill from "@/app/components/Pill";
 
 export default function Tutor() {
   const id = 1;
