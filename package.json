@@ -17,6 +17,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10",
     "postcss": "^8",
     "prettier": "^3.0.3",
