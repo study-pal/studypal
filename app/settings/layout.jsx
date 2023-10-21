@@ -12,18 +12,20 @@ function SettingsLayout({ children }) {
     {
       path: "/settings/account",
       label: "Account Settings",
-      icon: <UserIcon className="w-5 fill-dark mr-1" />,
+      icon: <UserIcon className="w-5 fill-dark mr-1 hover:fill-emerald-700" />,
     },
     {
       path: "/settings/tutor",
       label: "Tutor Details",
-      icon: <PencilIcon className="w-5 fill-dark mr-1" />,
+      icon: (
+        <PencilIcon className="w-5 fill-dark mr-1  hover:fill-emerald-700" />
+      ),
     },
   ];
   return (
     <div className="sm:flex m-0 md:grid gap-4 grid-cols-3 py-5 px-6 mt-10 mx-56">
       <div className="flex flex-col gap-3 mt-2 w-40">
-        <div className="text-lg font-medium flex border-b-2 border-neutral-300 pl-1">
+        <div className="text-lg font-medium flex border-b-2 border-neutral-300 pl-1 ">
           <AccountIcon className="w-5 fill-dark mr-1" />
           <span>John Doe</span>
         </div>
