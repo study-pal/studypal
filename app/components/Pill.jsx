@@ -1,11 +1,7 @@
-export default function Pill({ subjects }) {
+export default function Pill({ value }) {
   return (
-    <div className="flex gap-1">
-      {subjects.map((subject) => (
-        <div className="text-xs py-1 px-2 bg-accent text-white rounded-xl">
-          {subject}
-        </div>
-      ))}
+    <div className="text-xs py-1 px-2 bg-accent text-white rounded-full">
+      {value}
     </div>
   );
 }
