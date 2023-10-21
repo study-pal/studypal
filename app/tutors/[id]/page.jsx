@@ -24,12 +24,9 @@ export default function Tutor() {
             <h1 className="capitalize text-4xl font-medium w-full">{name}</h1>
             <div className="w-full my-4">
               <div className="flex gap-1">
-                <a className="px-2 py-1 bg-orange-600 text-white rounded-full font-light">
-                  {subjects[0]}
-                </a>
-                <a className="px-2 py-1 bg-orange-600 text-white rounded-full font-light">
-                  {subjects[1]}
-                </a>
+                {subjects.map((subject) => (
+                  <Pill value={subject} key={subject} />
+                ))}
               </div>
             </div>
           </div>
@@ -61,17 +58,5 @@ export default function Tutor() {
         </div>
       </div>
     </main>
-  );
-}
-
-function SubjectList({ subject }) {
-  return (
-    <div>
-      <div className="grid gap-4">
-        {tutors.map((tutor) => (
-          <Pill subjects={tutor.subjects} />
-        ))}
-      </div>
-    </div>
   );
 }
