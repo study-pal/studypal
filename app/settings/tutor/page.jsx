@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "@/components/forms/Button";
-import Select from "@/components/forms/Select";
+import Button from "@/app/components/forms/Button";
+import Select from "@/app/components/forms/Select";
 
 function TutorDetails() {
   const genderOptions = [

@@ -1,5 +1,5 @@
-import BookIcon from "@/icons/book.svg";
-import PencilIcon from "@/icons/pencil.svg";
+import BookIcon from "../icons/book.svg";
+import PencilIcon from "../icons/pencil.svg";
 
 export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
   // If avatar is null, show placeholder
@@ -28,7 +28,10 @@ export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
       </div>
       <div className="flex gap-1">
         {subjects.map((subject) => (
-          <div className="text-xs py-1 px-2 bg-accent text-white rounded-xl">
+          <div
+            key={subject}
+            className="text-xs py-1 px-2 bg-accent text-white rounded-xl"
+          >
             {subject}
           </div>
         ))}
