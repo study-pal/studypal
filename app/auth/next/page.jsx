@@ -14,10 +14,10 @@ export default function PostAuth() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState();
+  const [displayName, setDisplayName] = useState();
   const {
     control,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(tutorSchema),
@@ -31,7 +31,7 @@ export default function PostAuth() {
     if (user) {
       user.userInfo().then((info) => {
         const { first_name, last_name } = info.user_metadata;
-        setValue("displayName", `${first_name} ${last_name}`);
+        setDisplayName(`${first_name} ${last_name}`);
         setUserId(info.id);
         // TODO: uncomment this when the API is ready
         // fetch(`/api/tutors/${info.id}`).then((res) => {
@@ -78,6 +78,7 @@ export default function PostAuth() {
           <TutorDetailsForm
             control={control}
             onSubmit={handleSubmit(onSubmit)}
+            displayName={displayName}
             errors={errors}
           />
         </div>

@@ -20,7 +20,6 @@ export const ageGroups = [
 
 export const tutorSchema = z
   .object({
-    displayName: z.string(),
     gender: z.enum([
       "Male",
       "Female",
@@ -47,7 +46,6 @@ export const tutorSchema = z
   .required();
 
 export const initialTutorValues = {
-  displayName: "",
   gender: "Male",
   ageGroup: "Preschool",
   subjects: [],
