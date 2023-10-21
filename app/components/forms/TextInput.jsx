@@ -6,7 +6,7 @@ export default function TextInput({
   error,
   placeholder,
   label,
-  disabled = false,
+  readonly = false,
 }) {
   return (
     <div className="flex flex-col">
@@ -21,7 +21,7 @@ export default function TextInput({
         value={value}
         onChange={onChange}
         onKeyUp={onKeyUp}
-        disabled={disabled}
+        readonly={readonly}
       />
       {error && <p className="text-xs text-red-500">{error.message}</p>}
     </div>
