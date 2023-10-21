@@ -25,7 +25,7 @@ function TutorDetails() {
     <>
       <form
         action=""
-        className="w-full max-w-screen-2xl flex flex-col h-3/4 border-solid rounded p-7 bg-green-100"
+        className="w-full max-w-screen-2xl flex flex-col h-3/4 border-solid rounded p-7 bg-slate-50 drop-shadow-xl"
       >
         <div className="flex flex-col gap-3 w-44">
           <Select options={genderOptions} label="Gender" />
