@@ -1,7 +1,11 @@
+import { useRouter } from "next/navigation";
 import BookIcon from "../icons/book.svg";
 import PencilIcon from "../icons/pencil.svg";
+import Pill from "./Pill";
 
 export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
+  const router = useRouter();
+
   // If avatar is null, show placeholder
   const avatarUrl =
     imageUrl ??
@@ -9,8 +13,8 @@ export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
 
   return (
     <div
-      onClick={() => console.log("TODO: make sure to redirect to /tutors/[id]")}
-      className="w-full p-2 flex flex-col border border-neutral-400 rounded"
+      onClick={() => router.push("/tutors/" + id)}
+      className="w-full p-2 flex flex-col border border-neutral-400 rounded cursor-pointer"
     >
       <div className="flex items-center justify-center aspect-square bg-slate-300 rounded mb-2 overflow-hidden">
         <img className="object-cover" src={avatarUrl} />
@@ -28,12 +32,7 @@ export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
       </div>
       <div className="flex gap-1">
         {subjects.map((subject) => (
-          <div
-            key={subject}
-            className="text-xs py-1 px-2 bg-accent text-white rounded-xl"
-          >
-            {subject}
-          </div>
+          <Pill value={subject} key={subject} />
         ))}
       </div>
     </div>
