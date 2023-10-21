@@ -13,6 +13,7 @@ import { initialTutorValues, tutorSchema } from "@/schemas/tutor";
 export default function PostAuth() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [userId, setUserId] = useState();
   const {
     control,
     handleSubmit,
@@ -31,20 +32,35 @@ export default function PostAuth() {
       user.userInfo().then((info) => {
         const { first_name, last_name } = info.user_metadata;
         setValue("displayName", `${first_name} ${last_name}`);
-        fetch(`/api/tutors/${info.id}`).then((res) => {
-          res.json().then((data) => {
-            if (data.status === "success") {
-              router.replace("/");
-            }
-            setIsLoading(false);
-          });
-        });
+        setUserId(info.id);
+        // TODO: uncomment this when the API is ready
+        // fetch(`/api/tutors/${info.id}`).then((res) => {
+        //   res.json().then((data) => {
+        //     if (data.status === "success") {
+        //       router.replace("/");
+        //     }
+        //     setIsLoading(false);
+        //   });
+        // });
+        setIsLoading(false);
       });
     }
   }, [user]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    setIsLoading(true);
+    const res = await fetch("/api/tutors/new", {
+      method: "POST",
+      body: JSON.stringify({
+        userId,
+        ...data,
+      }),
+    });
+    const json = await res.json();
+    if (json.status === "success") {
+      router.replace("/");
+    }
   };
 
   if (isLoading)
