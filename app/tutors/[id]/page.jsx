@@ -43,7 +43,9 @@ export default async function Tutor({ params }) {
             />
           </div>
           <div className="w-3/5 mt-6">
-            <h1 className="capitalize text-4xl font-medium w-full">{"name"}</h1>
+            <h1 className="capitalize text-4xl font-medium w-full">
+              {tutor.data?.name}
+            </h1>
             <div className="w-full my-4">
               <div className="flex gap-1">
                 {tutor.data.subjects.map((subject) => (
