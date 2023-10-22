@@ -38,7 +38,6 @@ passage-auth {
 }
 
 passage-profile {
-  --passage-container-background-color: theme("colors.background");
   --passage-container-max-width: 100%;
   --passage-container-margin: 0;
 
