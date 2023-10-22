@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { getCurrentUser } from "@/actions/passageUser";
+import { AuthContext } from "@/app/providers";
 import Loader from "@/components/Loader";
 import TutorDetailsForm from "@/components/TutorDetailsForm";
 import { initialTutorValues, tutorSchema } from "@/schemas/tutor";
@@ -23,28 +23,30 @@ export default function PostAuth() {
     resolver: zodResolver(tutorSchema),
     defaultValues: initialTutorValues,
   });
+  const { authStatus, user } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
-      const { isAuthorized, userInfo } = await getCurrentUser();
-      if (!isAuthorized) {
-        router.replace("/");
-      } else {
-        const userId = userInfo.id;
-        const res = await fetch("/api/tutors/" + userId);
-        const data = await res.json();
-        if (data.status === "success") {
+      if (authStatus !== "authorizing") {
+        if (authStatus === "unauthorized") {
           router.replace("/");
         } else {
-          setUserId(userId);
-          setName(
-            `${userInfo.user_metadata.first_name} ${userInfo.user_metadata.last_name}`,
-          );
-          setIsLoading(false);
+          const userId = user.id;
+          const res = await fetch("/api/tutors/" + userId);
+          const data = await res.json();
+          if (data.status === "success") {
+            router.replace("/");
+          } else {
+            setUserId(userId);
+            setName(
+              `${user.user_metadata.first_name} ${user.user_metadata.last_name}`,
+            );
+            setIsLoading(false);
+          }
         }
       }
     })();
-  }, []);
+  }, [authStatus, user]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
