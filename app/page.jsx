@@ -13,7 +13,6 @@ async function getTutors() {
 }
 
 export default async function Home() {
-
   const tutors = await getTutors();
 
   return (
@@ -33,13 +32,19 @@ function TutorFilterBox() {
   return (
     <div>
       <div className="py-2 px-3 border border-neutral-400 rounded">
-        <Select options={genderOptions.map((opt) => ({
-              value: opt,
-            }))} label={"Gender"}/>
-        <Select options={ageGroups.map((opt) => ({
-              value: opt,
-            }))}label={"Age"}/>
-        <TextInput label={"Subjects"}/>
+        <Select
+          options={genderOptions.map((opt) => ({
+            value: opt,
+          }))}
+          label={"Gender"}
+        />
+        <Select
+          options={ageGroups.map((opt) => ({
+            value: opt,
+          }))}
+          label={"Age"}
+        />
+        <TextInput label={"Subjects"} />
         <Button className="w-full mt-3">Search</Button>
       </div>
     </div>
@@ -53,7 +58,7 @@ function TutorList({ tutors }) {
     <div>
       <p className="mb-4">{`Found ${tutors.length} ${tutorsText}.`}</p>
       <div className="grid gap-4" style={tutorListGridColumns}>
-        {tutors.map(({tutorData}) => (
+        {tutors.map(({ tutorData }) => (
           <TutorCard
             key={tutorData.id}
             id={tutorData.id}
