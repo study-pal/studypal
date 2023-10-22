@@ -55,7 +55,7 @@ function SettingsLayout({ children }) {
       <div className="col-start-1 col-end-2 flex flex-col gap-2 mt-2">
         <div className="text-lg font-medium flex border-b-2 border-neutral-300 pl-1 ">
           <AccountIcon className="w-5 fill-dark mr-1" />
-          <span>{name}</span>
+          <span>{name ?? "Loading..."}</span>
         </div>
         {links.map(({ path, label, icon }) => {
           const activeLinkStyle =
