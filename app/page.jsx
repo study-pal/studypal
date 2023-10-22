@@ -1,43 +1,20 @@
-"use client";
-
-import Loader from "./components/Loader";
 import TutorCard from "./components/TutorCard";
 import Button from "./components/forms/Button";
-import useAuth from "./hooks/useAuth";
 import Select from "./components/forms/Select";
 import { ageGroups, genderOptions } from "@/schemas/tutor";
 import TextInput from "./components/forms/TextInput";
 
-export default function Home() {
-  const {
-    auth: { state },
-  } = useAuth();
+async function getTutors() {
+  const res = await fetch("http://localhost:3000/api/tutors/", {
+    cache: "no-store",
+  });
+  const tutorData = await res.json();
+  return tutorData;
+}
 
-  // TODO: get tutors from api
-  const dummyTutors = [
-    {
-      id: 1,
-      name: "John Doe",
-      subjects: ["Math", "English"],
-      ageGroup: "College Prep",
-      image:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 2,
-      name: "Jane Doe",
-      subjects: ["History"],
-      ageGroup: "Primary",
-      image: null,
-    },
-  ];
+export default async function Home() {
 
-  if (state === "loading")
-    return (
-      <div className="flex justify-center mt-20">
-        <Loader />
-      </div>
-    );
+  const tutors = await getTutors();
 
   return (
     <main className="flex lg:mx-44 md:mx-20 mx-6">
@@ -45,14 +22,13 @@ export default function Home() {
         <h1 className="text-3xl font-bold mb-4">Tutors</h1>
         <div className="grid gap-6" style={homeGridColumns}>
           <TutorFilterBox />
-          <TutorList tutors={dummyTutors} />
+          <TutorList tutors={tutors.data} />
         </div>
       </div>
     </main>
   );
 }
 
-// TODO: task for julie
 function TutorFilterBox() {
   return (
     <div>
@@ -64,7 +40,7 @@ function TutorFilterBox() {
               value: opt,
             }))}label={"Age"}/>
         <TextInput label={"Subjects"}/>
-        <Button className="w-full">Search</Button>
+        <Button className="w-full mt-3">Search</Button>
       </div>
     </div>
   );
@@ -77,14 +53,14 @@ function TutorList({ tutors }) {
     <div>
       <p className="mb-4">{`Found ${tutors.length} ${tutorsText}.`}</p>
       <div className="grid gap-4" style={tutorListGridColumns}>
-        {tutors.map((tutor) => (
+        {tutors.map(({tutorData}) => (
           <TutorCard
-            key={tutor.id}
-            id={tutor.id}
-            name={tutor.name}
-            ageGroup={tutor.ageGroup}
-            subjects={tutor.subjects}
-            imageUrl={tutor.image}
+            key={tutorData.id}
+            id={tutorData.id}
+            name={tutorData.name}
+            ageGroup={tutorData.ageGroup}
+            subjects={tutorData.subjects}
+            imageUrl={tutorData.image}
           />
         ))}
       </div>
