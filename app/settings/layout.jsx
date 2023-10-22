@@ -12,13 +12,15 @@ function SettingsLayout({ children }) {
     {
       path: "/settings/account",
       label: "Account Settings",
-      icon: <UserIcon className="w-5 fill-dark mr-1 hover:fill-emerald-700" />,
+      icon: (
+        <UserIcon className="w-5 fill-dark mr-1 group-hover:fill-emerald-700" />
+      ),
     },
     {
       path: "/settings/tutor",
       label: "Tutor Details",
       icon: (
-        <PencilIcon className="w-5 fill-dark mr-1  hover:fill-emerald-700" />
+        <PencilIcon className="w-5 fill-dark mr-1 group-hover:fill-emerald-700" />
       ),
     },
   ];
@@ -32,14 +34,14 @@ function SettingsLayout({ children }) {
         {links.map(({ path, label, icon }) => {
           const activeLinkStyle =
             pathName === path
-              ? "pt-1.5 bg-emerald-100 text-emerald-700 rounded hover:bg-emerald-200"
+              ? "pt-1.5 bg-emerald-100 text-emerald-700 rounded group hover:bg-emerald-200"
               : "hover:text-emerald-500";
           // console.log(pathName);
           return (
             <div
               key={path}
               onClick={() => router.push(path)}
-              className={`cursor-pointer font-medium flex py-1.5 pl-1 ${activeLinkStyle}`}
+              className={`cursor-pointer font-medium flex py-1.5 pl-1 group ${activeLinkStyle}`}
             >
               {icon}
               {label}
