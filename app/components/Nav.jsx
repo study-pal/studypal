@@ -1,22 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { getCurrentUser, signOutUser } from "@/actions/passageUser";
+import { signOutUser } from "@/actions/passageUser";
+import useAuth from "@/hooks/useAuth";
 import Button from "./forms/Button";
 
 export default function Nav() {
   const router = useRouter();
-  const [authStatus, setAuthStatus] = useState("authorizing");
-
-  useEffect(() => {
-    (async () => {
-      const { isAuthorized } = await getCurrentUser();
-      setAuthStatus(isAuthorized ? "authorized" : "unauthorized");
-    })();
-  }, [authStatus]);
+  const { authStatus, setAuthStatus } = useAuth();
 
   const handleLogout = async () => {
     await signOutUser();
