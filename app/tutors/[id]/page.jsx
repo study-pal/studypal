@@ -1,5 +1,6 @@
 import Button from "@/app/components/forms/Button";
 import Pill from "@/app/components/Pill";
+import Image from "next/image";
 
 async function getTutor(id) {
   const res = await fetch("http://localhost:3000/api/tutors/" + id, {
@@ -13,7 +14,17 @@ export default async function Tutor({ params }) {
   const tutor = await getTutor(params.id);
 
   if (tutor.status === "error") {
-    return <p>not found</p>;
+    return (
+      <div className="w-full flex flex-row justify-center">
+        <Image
+          src="/error.svg"
+          width={800}
+          height={800}
+          className="mt-32"
+          alt="Error"
+        />
+      </div>
+    );
   }
 
   const avatar =
