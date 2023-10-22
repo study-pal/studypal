@@ -1,18 +1,28 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import useAuth from "../hooks/useAuth";
+
+import { getCurrentUser, signOutUser } from "@/actions/passageUser";
 import Button from "./forms/Button";
 
 export default function Nav() {
   const router = useRouter();
-  const {
-    auth: { state, user },
-    handleLogout,
-  } = useAuth();
+  const [authStatus, setAuthStatus] = useState("authorizing");
 
-  if (state === "loading") return null;
+  useEffect(() => {
+    (async () => {
+      const { isAuthorized } = await getCurrentUser();
+      setAuthStatus(isAuthorized ? "authorized" : "unauthorized");
+    })();
+  }, [authStatus]);
+
+  const handleLogout = async () => {
+    await signOutUser();
+    setAuthStatus("unauthorized");
+    router.push("/");
+  };
 
   return (
     <nav className="w-full flex justify-between items-center px-8 border-b border-b-neutral-200">
@@ -20,11 +30,11 @@ export default function Nav() {
         StudyPal
       </Link>
 
-      {user !== null ? (
+      {authStatus === "authorized" && (
         <AuthorizedUser router={router} handleLogout={handleLogout} />
-      ) : (
-        <GuestUser router={router} />
       )}
+
+      {authStatus === "unauthorized" && <GuestUser router={router} />}
     </nav>
   );
 }
