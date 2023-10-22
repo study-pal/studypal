@@ -13,6 +13,7 @@
     "@google-cloud/firestore": "^7.1.0",
     "@hookform/resolvers": "^3.3.2",
     "@passageidentity/passage-elements": "^1.15.0",
+    "@passageidentity/passage-node": "^2.6.0",
     "firebase-admin": "^11.11.0",
     "next": "13.5.4",
     "react": "^18",
