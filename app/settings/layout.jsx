@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import PencilIcon from "../icons/pencil.svg";
-import UserIcon from "../icons/user.svg";
-import AccountIcon from "../icons/account-circle.svg";
 import { getCurrentUser } from "@/actions/passageUser";
+import PencilIcon from "@/icons/pencil.svg";
+import UserIcon from "@/icons/user.svg";
+import AccountIcon from "@/icons/account-circle.svg";
 
 function SettingsLayout({ children }) {
   const pathName = usePathname();
