@@ -31,7 +31,7 @@ export default function PostAuth() {
         router.push("/");
       } else {
         setUserId(userInfo.id);
-        setName(userInfo.user_metadata.first_namr);
+        setName(userInfo.user_metadata.first_name);
         setIsLoading(false);
       }
     })();
