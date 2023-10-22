@@ -16,7 +16,6 @@ export async function GET(_, { params }) {
       );
     }
   } catch (error) {
-    // console.log(error);
     return Response.json(
       { status: "error", message: JSON.stringify(error) },
       { status: 500 },
