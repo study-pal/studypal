@@ -25,7 +25,8 @@ function SettingsLayout({ children }) {
     },
   ];
   return (
-    <div className="sm:flex m-0 md:grid gap-4 grid-cols-3 py-5 px-6 mt-10 mx-56">
+    //<div className="sm:flex m-0 md:grid gap-4 grid-cols-3 py-5 px-6 mt-10 mx-56">
+    <div className="md:grid gap-2 grid-cols-4 py-5 px-6 mt-10 mx-10 lg:mx-40">
       <div className="flex flex-col gap-3 mt-2 w-40">
         <div className="text-lg font-medium flex border-b-2 border-neutral-300 pl-1 ">
           <AccountIcon className="w-5 fill-dark mr-1" />
@@ -49,7 +50,7 @@ function SettingsLayout({ children }) {
           );
         })}
       </div>
-      <section className="col-start-2 col-end-4">{children}</section>
+      <section className="col-start-2 col-end-5 ml-3">{children}</section>
     </div>
   );
 }
