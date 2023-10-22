@@ -4,6 +4,9 @@ import Loader from "./components/Loader";
 import TutorCard from "./components/TutorCard";
 import Button from "./components/forms/Button";
 import useAuth from "./hooks/useAuth";
+import Select from "./components/forms/Select";
+import { ageGroups, genderOptions } from "@/schemas/tutor";
+import TextInput from "./components/forms/TextInput";
 
 export default function Home() {
   const {
@@ -54,7 +57,13 @@ function TutorFilterBox() {
   return (
     <div>
       <div className="py-2 px-3 border border-neutral-400 rounded">
-        <p>filter box here, task for @julie</p>
+        <Select options={genderOptions.map((opt) => ({
+              value: opt,
+            }))} label={"Gender"}/>
+        <Select options={ageGroups.map((opt) => ({
+              value: opt,
+            }))}label={"Age"}/>
+        <TextInput label={"Subjects"}/>
         <Button className="w-full">Search</Button>
       </div>
     </div>
