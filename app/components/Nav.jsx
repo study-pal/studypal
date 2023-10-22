@@ -1,15 +1,16 @@
 "use client";
 
+import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { signOutUser } from "@/actions/passageUser";
-import useAuth from "@/hooks/useAuth";
 import Button from "./forms/Button";
+import { AuthContext } from "../providers";
 
 export default function Nav() {
   const router = useRouter();
-  const { authStatus, setAuthStatus } = useAuth();
+  const { authStatus, setAuthStatus } = useContext(AuthContext);
 
   const handleLogout = async () => {
     await signOutUser();
