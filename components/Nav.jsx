@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { signOutUser } from "@/actions/passageUser";
 import Button from "./forms/Button";
-import { AuthContext } from "../providers";
+import { AuthContext } from "../app/providers";
 
 export default function Nav() {
   const router = useRouter();

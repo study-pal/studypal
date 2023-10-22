@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Controller, useFieldArray } from "react-hook-form";
 
-import TextInput from "@/app/components/forms/TextInput";
-import Button from "@/app/components/forms/Button";
-import Select from "@/app/components/forms/Select";
-import TextArea from "@/app/components/forms/TextArea";
+import TextInput from "@/components/forms/TextInput";
+import Button from "@/components/forms/Button";
+import Select from "@/components/forms/Select";
+import TextArea from "@/components/forms/TextArea";
 import { ageGroups, genderOptions } from "@/schemas/tutor";
 
 export default function TutorDetailsForm({ control, onSubmit, errors }) {
