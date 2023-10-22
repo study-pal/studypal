@@ -1,6 +1,8 @@
+"use client";
+
 import { useRouter } from "next/navigation";
-import BookIcon from "../icons/book.svg";
-import PencilIcon from "../icons/pencil.svg";
+// import BookIcon from "../icons/book.svg";
+// import PencilIcon from "../icons/pencil.svg";
 import Pill from "./Pill";
 
 export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
@@ -22,12 +24,12 @@ export default function TutorCard({ id, name, ageGroup, subjects, imageUrl }) {
 
       <p className="text-lg font-bold mb-1">{name}</p>
       <div className="flex items-center mb-1">
-        <PencilIcon className="w-5 fill-dark mr-1" />
+        {/* <PencilIcon className="w-5 fill-dark mr-1" /> */}
         <span>Age Group: {ageGroup}</span>
       </div>
 
       <div className="flex items-center mb-1">
-        <BookIcon className="w-5 fill-dark mr-1" />
+        {/* <BookIcon className="w-5 fill-dark mr-1" /> */}
         <span>Subjects:</span>
       </div>
       <div className="flex gap-1">
