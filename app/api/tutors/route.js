@@ -1,20 +1,33 @@
 import { db } from "@/firebase";
 
-export async function GET(request, { params }) {
+export async function GET(request) {
   const tutors = [];
   const searchParams = request.nextUrl.searchParams;
-  const query = searchParams.get("gender");
-  console.log(query);
+  const genderQuery = searchParams.get("gender");
+  const ageGroupQuery = searchParams.get("ageGroup");
+  const subjectQuery = searchParams.get("subject");
+
   try {
-    const snapshot = await db
-      .collection("tutors")
-      // .where(query.keys(), "==", query.values)
-      .get();
+    let tutorsRef = db.collection("tutors");
+    if (genderQuery) {
+      tutorsRef = tutorsRef.where("gender", "==", genderQuery);
+    }
+    if (ageGroupQuery) {
+      tutorsRef = tutorsRef.where("ageGroup", "==", ageGroupQuery);
+    }
+    if (subjectQuery) {
+      tutorsRef = tutorsRef.where("subjects", "array-contains", subjectQuery);
+    }
+
+    const snapshot = await tutorsRef.get();
     snapshot.forEach((doc) => {
-      tutors.push(doc.data());
+      tutors.push({ id: doc.id, ...doc.data() });
     });
-    return Response.json({ status: "success", data: tutors });
+    return Response.json({ status: "success", data: tutors }, { status: 200 });
   } catch (error) {
-    return Response.json({ status: "error", message: JSON.stringify(error) });
+    return Response.json(
+      { status: "error", message: JSON.stringify(error) },
+      { status: 400 },
+    );
   }
 }

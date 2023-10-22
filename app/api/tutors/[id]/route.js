@@ -6,7 +6,7 @@ export async function GET(_, { params }) {
 
     if (snapshot.exists) {
       return Response.json(
-        { status: "success", data: { ...snapshot.data().tutorData } },
+        { status: "success", data: { ...snapshot.data() } },
         { status: 200 },
       );
     } else {
@@ -16,7 +16,6 @@ export async function GET(_, { params }) {
       );
     }
   } catch (error) {
-    console.log(error);
     return Response.json(
       { status: "error", message: JSON.stringify(error) },
       { status: 500 },

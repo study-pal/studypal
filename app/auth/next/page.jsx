@@ -28,28 +28,37 @@ export default function PostAuth() {
     (async () => {
       const { isAuthorized, userInfo } = await getCurrentUser();
       if (!isAuthorized) {
-        router.push("/");
+        router.replace("/");
       } else {
-        setUserId(userInfo.id);
-        setName(userInfo.user_metadata.first_name);
-        setIsLoading(false);
+        const userId = userInfo.id;
+        const res = await fetch("/api/tutors/" + userId);
+        const data = await res.json();
+        if (data.status === "success") {
+          router.replace("/");
+        } else {
+          setUserId(userId);
+          setName(
+            `${userInfo.user_metadata.first_name} ${userInfo.user_metadata.last_name}`,
+          );
+          setIsLoading(false);
+        }
       }
     })();
   }, []);
 
   const onSubmit = async (data) => {
-    console.log(data);
     setIsLoading(true);
     const res = await fetch("/api/tutors/new", {
       method: "POST",
       body: JSON.stringify({
         userId,
+        name,
         ...data,
       }),
     });
     const json = await res.json();
     if (json.status === "success") {
-      router.replace("/");
+      router.replace("/settings/account");
     }
   };
 
