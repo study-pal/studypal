@@ -3,7 +3,6 @@ import Passage from "@passageidentity/passage-node";
 
 export async function middleware(request) {
   const authToken = request.cookies.get("psg_auth_token")?.value;
-  console.log(authToken);
   if (!authToken) {
     return NextResponse.redirect(new URL("/", request.url));
   }
