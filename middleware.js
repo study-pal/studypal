@@ -3,7 +3,6 @@ import Passage from "@passageidentity/passage-node";
 
 export async function middleware(request) {
   const authToken = request.cookies.get("psg_auth_token")?.value;
-  console.log(authToken);
   if (!authToken) {
     return NextResponse.redirect(new URL("/", request.url));
   }
@@ -17,9 +16,8 @@ export async function middleware(request) {
   if (!userID) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  await passage.user.signOut(userID);
 }
 
 export const config = {
-  matcher: ["/api/users/:path*", "/api/tutors/new"],
+  matcher: ["/api/users/:path*", "/api/tutors/new", "/api/tutors/:id/update"],
 };
