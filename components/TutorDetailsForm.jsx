@@ -18,9 +18,9 @@ export default function TutorDetailsForm({ control, onSubmit, errors }) {
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
+      onSubmit={onSubmit}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") e.preventDefault();
       }}
       className="flex flex-col gap-3"
     >
@@ -128,7 +128,7 @@ export default function TutorDetailsForm({ control, onSubmit, errors }) {
       />
 
       <div className="flex justify-end">
-        <Button onClick={onSubmit}>Save</Button>
+        <Button type="submit">Save</Button>
       </div>
     </form>
   );
