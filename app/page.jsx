@@ -6,7 +6,7 @@ import TextInput from "./components/forms/TextInput";
 
 async function getTutors() {
   const res = await fetch("http://localhost:3000/api/tutors/", {
-    cache: "no-store",
+    cache: "no-cache",
   });
   const tutorData = await res.json();
   return tutorData;
@@ -58,14 +58,14 @@ function TutorList({ tutors }) {
     <div>
       <p className="mb-4">{`Found ${tutors.length} ${tutorsText}.`}</p>
       <div className="grid gap-4" style={tutorListGridColumns}>
-        {tutors.map(({ tutorData }) => (
+        {tutors.map((tutor) => (
           <TutorCard
-            key={tutorData.id}
-            id={tutorData.id}
-            name={tutorData.name}
-            ageGroup={tutorData.ageGroup}
-            subjects={tutorData.subjects}
-            imageUrl={tutorData.image}
+            key={tutor.id}
+            id={tutor.id}
+            name={tutor.name}
+            ageGroup={tutor.ageGroup}
+            subjects={tutor.subjects}
+            imageUrl={tutor.image}
           />
         ))}
       </div>
