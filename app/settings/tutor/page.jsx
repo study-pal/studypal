@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "@/app/components/forms/Button";
-import TextInput from "@/app/components/forms/TextInput";
-import TextArea from "@/app/components/forms/TextArea";
-import Select from "@/app/components/forms/Select";
+import Button from "@/components/forms/Button";
+import TextInput from "@/components/forms/TextInput";
+import TextArea from "@/components/forms/TextArea";
+import Select from "@/components/forms/Select";
 
 function TutorDetails() {
   // add input that accepts files

@@ -4,8 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { getCurrentUser, signOutUser } from "@/actions/passageUser";
-import Loader from "@/app/components/Loader";
-import Button from "@/app/components/forms/Button";
+import Loader from "@/components/Loader";
+import Button from "@/components/forms/Button";
 import { AuthContext } from "@/app/providers";
 
 export default function AccountSettings() {

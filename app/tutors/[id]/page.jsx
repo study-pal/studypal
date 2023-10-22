@@ -1,5 +1,5 @@
-import Button from "@/app/components/forms/Button";
-import Pill from "@/app/components/Pill";
+import Button from "@/components/forms/Button";
+import Pill from "@/components/Pill";
 import Image from "next/image";
 
 async function getTutor(id) {

@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { getCurrentUser } from "@/actions/passageUser";
-import Loader from "@/app/components/Loader";
-import TutorDetailsForm from "@/app/components/TutorDetailsForm";
+import Loader from "@/components/Loader";
+import TutorDetailsForm from "@/components/TutorDetailsForm";
 import { initialTutorValues, tutorSchema } from "@/schemas/tutor";
 
 export default function PostAuth() {
