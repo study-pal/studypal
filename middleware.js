@@ -17,9 +17,8 @@ export async function middleware(request) {
   if (!userID) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  await passage.user.signOut(userID);
 }
 
 export const config = {
-  matcher: ["/api/users/:path*", "/api/tutors/new"],
+  matcher: ["/api/users/:path*", "/api/tutors/new", "/api/tutors/:id/update"],
 };
