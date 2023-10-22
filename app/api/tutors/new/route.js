@@ -3,7 +3,10 @@ import { db } from "@/firebase";
 export async function POST(request) {
   const { userId, ...tutorData } = await request.json();
   try {
-    db.collection("tutors").doc(userId).set({ tutorData });
+    db.collection("tutors")
+      .doc(userId)
+      .set({ ...tutorData });
+
     return Response.json(
       {
         status: "success",
