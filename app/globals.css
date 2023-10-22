@@ -29,10 +29,27 @@ passage-auth {
   --passage-body-text-color: theme("colors.dark");
 
   --passage-primary-button-background-color: theme("colors.emerald.500");
+  --passage-primary-button-border-color: transparent;
 
   --passage-primary-button-border-radius: 4px;
 
-  --passage-primary-button-background-hover-color: theme("colors.emerald.600");
+  --passage-primary-button-background-hover-color: theme("colors.accent");
+  --passage-primary-button-border-hover-color: transparent;
+}
+
+passage-profile {
+  --passage-container-max-width: 100%;
+  --passage-container-margin: 0;
+
+  --passage-secondary-button-text-color: theme("colors.white");
+  --passage-secondary-button-background-color: theme("colors.emerald.500");
+  --passage-secondary-button-border-color: transparent;
+
+  --passage-primary-button-border-radius: 4px;
+
+  --passage-secondary-button-text-hover-color: theme("colors.white");
+  --passage-secondary-button-background-hover-color: theme("colors.accent");
+  --passage-secondary-button-border-hover-color: transparent;
 }
 
 /* Loader */

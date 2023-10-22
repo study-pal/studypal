@@ -30,36 +30,31 @@ function TutorDetails() {
   ];
 
   return (
-    <>
-      <form
-        action=""
-        className="w-full max-w-screen-2xl flex flex-col h-fit border-solid rounded p-7 bg-slate-50 drop-shadow-xl"
-      >
-        <div className="grid grid-cols-2">
-          <div className="flex flex-col justify-center px-8 gap-3">
-            <img
-              className="h-32 w-32 rounded-full max-w-full border-4 border-background drop-shadow-xl"
-              src={tutorImage}
-              alt="tutor-image"
-            />
-            <input type="file" />
-          </div>
-          <div className="flex flex-col gap-3 w-44">
-            <Select options={genderOptions} label="Gender" />
-            <Select options={ageGroups} label="Age Group" />
+    <form className="w-full max-w-screen-2xl flex flex-col h-fit border-solid rounded p-7 bg-white">
+      <div className="grid grid-cols-2">
+        <div className="flex flex-col justify-center px-8 gap-3">
+          <img
+            className="h-32 w-32 rounded-full max-w-full border border-neutral-400"
+            src={tutorImage}
+            alt="tutor-image"
+          />
+          <input type="file" />
+        </div>
+        <div className="flex flex-col gap-3 w-44">
+          <Select options={genderOptions} label="Gender" />
+          <Select options={ageGroups} label="Age Group" />
 
-            <TextInput name="subject" placeholder="Type subject here" />
-          </div>
+          <TextInput name="subject" placeholder="Type subject here" />
         </div>
+      </div>
 
-        <div className="my-5">
-          <TextArea name="" id="" placeholder="Bio here"></TextArea>
-        </div>
-        <div className="flex justify-end">
-          <Button>Submit</Button>
-        </div>
-      </form>
-    </>
+      <div className="my-5">
+        <TextArea name="" id="" placeholder="Bio here"></TextArea>
+      </div>
+      <div className="flex justify-end">
+        <Button>Submit</Button>
+      </div>
+    </form>
   );
 }
 
