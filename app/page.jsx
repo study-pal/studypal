@@ -1,19 +1,21 @@
 import TutorCard from "./components/TutorCard";
-import Button from "./components/forms/Button";
-import Select from "./components/forms/Select";
-import { ageGroups, genderOptions } from "@/schemas/tutor";
-import TextInput from "./components/forms/TextInput";
+import TutorFilterBox from "./components/TutorFilterBox";
 
-async function getTutors() {
-  const res = await fetch("http://localhost:3000/api/tutors/", {
+async function getTutors(queries = "") {
+  let url = "http://localhost:3000/api/tutors/";
+  if (queries) {
+    url += `?${queries}`;
+  }
+  const res = await fetch(url, {
     cache: "no-cache",
   });
   const tutorData = await res.json();
   return tutorData;
 }
 
-export default async function Home() {
-  const tutors = await getTutors();
+export default async function Home({ searchParams }) {
+  const queries = new URLSearchParams(searchParams);
+  const tutors = await getTutors(queries.toString());
 
   return (
     <main className="flex lg:mx-44 md:mx-20 mx-6">
@@ -25,29 +27,6 @@ export default async function Home() {
         </div>
       </div>
     </main>
-  );
-}
-
-function TutorFilterBox() {
-  return (
-    <div>
-      <div className="py-2 px-3 border border-neutral-400 rounded">
-        <Select
-          options={genderOptions.map((opt) => ({
-            value: opt,
-          }))}
-          label={"Gender"}
-        />
-        <Select
-          options={ageGroups.map((opt) => ({
-            value: opt,
-          }))}
-          label={"Age"}
-        />
-        <TextInput label={"Subjects"} />
-        <Button className="w-full mt-3">Search</Button>
-      </div>
-    </div>
   );
 }
 
