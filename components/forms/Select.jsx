@@ -17,7 +17,7 @@ export default function Select({
         onChange={onChange}
         value={value}
       >
-        <option value="" hidden disabled></option>
+        <option value=""></option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.value}

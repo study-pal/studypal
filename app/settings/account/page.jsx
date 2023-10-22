@@ -3,15 +3,15 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { getCurrentUser, signOutUser } from "@/actions/passageUser";
-import Loader from "@/app/components/Loader";
-import Button from "@/app/components/forms/Button";
+import { signOutUser } from "@/actions/passageUser";
+import Loader from "@/components/Loader";
+import Button from "@/components/forms/Button";
 import { AuthContext } from "@/app/providers";
 
 export default function AccountSettings() {
   const router = useRouter();
   const [deleteStatus, setDeleteStatus] = useState("idle");
-  const { setAuthStatus } = useContext(AuthContext);
+  const { setAuthStatus, user } = useContext(AuthContext);
 
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
@@ -19,9 +19,8 @@ export default function AccountSettings() {
 
   const handleDelete = async () => {
     setDeleteStatus("deleting");
-    const { userInfo } = await getCurrentUser();
     await signOutUser();
-    await fetch(`/api/users/${userInfo.id}`, {
+    await fetch(`/api/users/${user.id}`, {
       method: "DELETE",
     });
     setAuthStatus("unauthorized");

@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { getCurrentUser } from "@/actions/passageUser";
-import Loader from "@/app/components/Loader";
-import TutorDetailsForm from "@/app/components/TutorDetailsForm";
+import { AuthContext } from "@/app/providers";
+import Loader from "@/components/Loader";
+import TutorDetailsForm from "@/components/TutorDetailsForm";
+import { uploadImage } from "@/lib/firebase";
 import { initialTutorValues, tutorSchema } from "@/schemas/tutor";
 
 export default function PostAuth() {
@@ -23,42 +24,54 @@ export default function PostAuth() {
     resolver: zodResolver(tutorSchema),
     defaultValues: initialTutorValues,
   });
+  const { authStatus, user } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
-      const { isAuthorized, userInfo } = await getCurrentUser();
-      if (!isAuthorized) {
-        router.replace("/");
-      } else {
-        const userId = userInfo.id;
-        const res = await fetch("/api/tutors/" + userId);
-        const data = await res.json();
-        if (data.status === "success") {
+      if (authStatus !== "authorizing") {
+        if (authStatus === "unauthorized") {
           router.replace("/");
         } else {
-          setUserId(userId);
-          setName(
-            `${userInfo.user_metadata.first_name} ${userInfo.user_metadata.last_name}`,
-          );
-          setIsLoading(false);
+          const userId = user.id;
+          const res = await fetch("/api/tutors/" + userId);
+          const data = await res.json();
+          if (data.status === "success") {
+            router.replace("/");
+          } else {
+            setUserId(userId);
+            setName(
+              `${user.user_metadata.first_name} ${user.user_metadata.last_name}`,
+            );
+            setIsLoading(false);
+          }
         }
       }
     })();
-  }, []);
+  }, [authStatus, user]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    const res = await fetch("/api/tutors/new", {
-      method: "POST",
-      body: JSON.stringify({
-        userId,
-        name,
-        ...data,
-      }),
-    });
-    const json = await res.json();
-    if (json.status === "success") {
-      router.replace("/settings/account");
+    const { image: imageList, ...otherData } = data;
+    const postData = otherData;
+    try {
+      if (imageList?.length > 0) {
+        const imageUrl = await uploadImage(user.id, imageList[0]);
+        postData["image"] = imageUrl;
+      }
+      const res = await fetch("/api/tutors/new", {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          name,
+          ...postData,
+        }),
+      });
+      const json = await res.json();
+      if (json.status === "success") {
+        router.replace("/settings/account");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -74,7 +87,7 @@ export default function PostAuth() {
       <div className="w-full flex justify-center md:py-16 py-6">
         <div className="md:w-2/3 w-full flex flex-col py-6 px-8 border border-neutral-400 rounded-lg">
           <h1 className="text-3xl text-center font-bold">Hey, {name}! 👋</h1>
-          <p className="text-center">
+          <p className="text-center mb-5">
             Thanks for joining StudyPal! Let's setup your tutor profile!
           </p>
           <TutorDetailsForm

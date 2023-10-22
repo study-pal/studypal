@@ -1,5 +1,5 @@
-import TutorCard from "./components/TutorCard";
-import TutorFilterBox from "./components/TutorFilterBox";
+import TutorCard from "../components/TutorCard";
+import TutorFilterBox from "../components/TutorFilterBox";
 
 async function getTutors(queries = "") {
   let url = "http://localhost:3000/api/tutors/";

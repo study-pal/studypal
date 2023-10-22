@@ -1,25 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import PencilIcon from "../icons/pencil.svg";
-import UserIcon from "../icons/user.svg";
-import AccountIcon from "../icons/account-circle.svg";
-import { getCurrentUser } from "@/actions/passageUser";
+import PencilIcon from "@/icons/pencil.svg";
+import UserIcon from "@/icons/user.svg";
+import AccountIcon from "@/icons/account-circle.svg";
+import { AuthContext } from "../providers";
 
 function SettingsLayout({ children }) {
   const pathName = usePathname();
   const router = useRouter();
   const [name, setName] = useState();
+  const { authStatus, user } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
-      const { userInfo } = await getCurrentUser();
-      setName(
-        `${userInfo.user_metadata.first_name} ${userInfo.user_metadata.last_name}`,
-      );
+      if (authStatus === "authorized") {
+        setName(
+          `${user.user_metadata.first_name} ${user.user_metadata.last_name}`,
+        );
+      }
     })();
-  }, [setName]);
+  }, [setName, authStatus, user]);
 
   const links = [
     {

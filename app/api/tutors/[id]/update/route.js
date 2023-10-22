@@ -2,10 +2,13 @@ import { db } from "@/firebase";
 
 export async function PATCH(request, { params }) {
   const { ...tutorData } = await request.json();
+
   try {
-    db.collection("tutors")
+    await db
+      .collection("tutors")
       .doc(params.id)
-      .update({ ...tutorData });
+      .set({ ...tutorData }, { merge: true });
+
     return Response.json(
       {
         status: "success",
