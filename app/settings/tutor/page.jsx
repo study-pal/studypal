@@ -1,8 +1,16 @@
 import React from "react";
 import Button from "@/app/components/forms/Button";
+import TextInput from "@/app/components/forms/TextInput";
+import TextArea from "@/app/components/forms/TextArea";
 import Select from "@/app/components/forms/Select";
 
 function TutorDetails() {
+  // add input that accepts files
+
+  const tutorImage =
+    //"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
+    "https://thenounproject.com/api/private/icons/1081856/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0";
+
   const genderOptions = [
     { value: "Male" },
     { value: "Female" },
@@ -25,26 +33,28 @@ function TutorDetails() {
     <>
       <form
         action=""
-        className="w-full max-w-screen-2xl flex flex-col h-3/4 border-solid rounded p-7 bg-green-100"
+        className="w-full max-w-screen-2xl flex flex-col h-fit border-solid rounded p-7 bg-slate-50 drop-shadow-xl"
       >
-        <div className="flex flex-col gap-3 w-44">
-          <Select options={genderOptions} label="Gender" />
-          <Select options={ageGroups} label="Age Group" />
+        <div className="grid grid-cols-2">
+          <div className="flex flex-col justify-center px-8 gap-3">
+            <img
+              className="h-32 w-32 rounded-full max-w-full border-4 border-background drop-shadow-xl"
+              src={tutorImage}
+              alt="tutor-image"
+            />
+            <input type="file" />
+          </div>
+          <div className="flex flex-col gap-3 w-44">
+            <Select options={genderOptions} label="Gender" />
+            <Select options={ageGroups} label="Age Group" />
 
-          <input
-            className="py-1 px-2 rounded text-m border-2 border-solid border-neutral-400 focus:border-dark"
-            type="text"
-            placeholder="Type subject here..."
-          ></input>
+            <TextInput name="subject" placeholder="Type subject here" />
+          </div>
         </div>
-        <textarea
-          className=" w-full flex rounded my-7 p-3 text-m outline-0 border-2 border-solid border-neutral-400 focus:border-dark"
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Bio here"
-        ></textarea>
+
+        <div className="my-5">
+          <TextArea name="" id="" placeholder="Bio here"></TextArea>
+        </div>
         <div className="flex justify-end">
           <Button>Submit</Button>
         </div>
