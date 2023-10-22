@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "@/app/providers";
 import Loader from "@/components/Loader";
 import TutorDetailsForm from "@/components/TutorDetailsForm";
+import { uploadImage } from "@/lib/firebase";
 import { initialTutorValues, tutorSchema } from "@/schemas/tutor";
 
 export default function PostAuth() {
@@ -50,17 +51,27 @@ export default function PostAuth() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    const res = await fetch("/api/tutors/new", {
-      method: "POST",
-      body: JSON.stringify({
-        userId,
-        name,
-        ...data,
-      }),
-    });
-    const json = await res.json();
-    if (json.status === "success") {
-      router.replace("/settings/account");
+    const { image: imageList, ...otherData } = data;
+    const postData = otherData;
+    try {
+      if (imageList?.length > 0) {
+        const imageUrl = await uploadImage(user.id, imageList[0]);
+        postData["image"] = imageUrl;
+      }
+      const res = await fetch("/api/tutors/new", {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          name,
+          ...postData,
+        }),
+      });
+      const json = await res.json();
+      if (json.status === "success") {
+        router.replace("/settings/account");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -76,7 +87,7 @@ export default function PostAuth() {
       <div className="w-full flex justify-center md:py-16 py-6">
         <div className="md:w-2/3 w-full flex flex-col py-6 px-8 border border-neutral-400 rounded-lg">
           <h1 className="text-3xl text-center font-bold">Hey, {name}! 👋</h1>
-          <p className="text-center">
+          <p className="text-center mb-5">
             Thanks for joining StudyPal! Let's setup your tutor profile!
           </p>
           <TutorDetailsForm
