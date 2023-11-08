@@ -1,21 +1,19 @@
-## Development Setup
+# Studypal
 
-1. After cloning the project, install the dependencies.
+Studypal is an application where tutors can sign up to provide students with homework help in a free and convenient way.
 
-    ```bash
-    npm i
-    ```
+<img src="https://i.imgur.com/iiDjJVb.png">
 
-2. Setup firebase by generating a private key in the console and storing the file as `firebase_key.json` inside `/keys` directory.
+## Technologies Used
 
-3. Run the development server.
+Javascript • Firebase • Next.js • Node.js • Passage Auth • Tailwind CSS
 
-    ```bash
-    npm run dev
-    ```
+## Getting Started
 
-## Deploy on Vercel
+Check out Studypal here: https://studypal.support/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Find free tutors or log in to help tutor students!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Hackathon for Social Good
+
+Studypal was a finalist in the 2023 Women Who Code Hackathon for Social Good. It was also nominated for the best implmentation of passswordless authentication using Passage by 1Password.
