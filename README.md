@@ -8,11 +8,9 @@ Studypal is an application where tutors can sign up to provide students with hom
 
 Javascript • Firebase • Next.js • Node.js • Passage Auth • Tailwind CSS
 
-## Getting Started
+## Using Studypal
 
-Check out Studypal here: https://studypal.support/
-
-Find free tutors or log in to help tutor students!
+Check out our demo video of Studypal here: https://www.youtube.com/watch?v=8GyGPvsRe6g
 
 ## Hackathon for Social Good
 
